@@ -28,7 +28,23 @@ jobs:
         run: npm run typecheck
 
       - name: Lint
-        run: npm run lint
+        id: lint
+        continue-on-error: true
+        run: npm run lint -- --format json --output-file eslint-report.json
+
+      - name: Upload lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-report
+          path: eslint-report.json
+          if-no-files-found: ignore
+
+      - name: Enforce lint result
+        if: steps.lint.outcome == 'failure'
+        run: |
+          cat eslint-report.json
+          exit 1
 
       - name: Production build
         run: npm run build
