@@ -74,6 +74,10 @@ a {
   -webkit-background-clip: text;
 }
 
+#inicio h1 {
+  font-size: clamp(2.25rem, 3.45vw, 3.1rem);
+}
+
 .atlas-primary-button,
 .atlas-secondary-button {
   display: inline-flex;
@@ -173,6 +177,10 @@ a {
 @media (max-width: 640px) {
   .atlas-container {
     width: calc(100% - 2.5rem);
+  }
+
+  #inicio h1 {
+    font-size: clamp(2.15rem, 9vw, 2.45rem);
   }
 
   .atlas-primary-button,
