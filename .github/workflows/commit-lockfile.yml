@@ -1,0 +1,39 @@
+name: Commit npm lockfile
+
+on:
+  push:
+    branches:
+      - feat/official-homepage-v1
+    paths:
+      - .github/workflows/commit-lockfile.yml
+
+permissions:
+  contents: write
+
+jobs:
+  lockfile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/official-homepage-v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate lockfile
+        run: npm install --package-lock-only --no-audit --no-fund --loglevel=error
+
+      - name: Commit lockfile
+        run: |
+          git config user.name "atlas-global-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "build: add reproducible npm lockfile"
+          git push origin HEAD:feat/official-homepage-v1
