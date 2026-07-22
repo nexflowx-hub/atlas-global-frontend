@@ -17,6 +17,8 @@ The project implements the first production-ready homepage for `atlasglobal.digi
 - SEO metadata, JSON-LD, robots and sitemap
 - Open Graph image generation
 - Reduced-motion support
+- Reproducible npm dependency lockfile
+- Automated typecheck, lint, build, runtime smoke test and visual QA captures
 
 The project intentionally does not yet include Atlas Core, authentication, dashboards, CMS, AI Concierge, customer portals or database-backed lead storage.
 
@@ -35,7 +37,7 @@ The project intentionally does not yet include Atlas Core, authentication, dashb
 ## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -48,6 +50,8 @@ npm run typecheck
 npm run lint
 npm run build
 ```
+
+The GitHub Actions workflow also starts the production server, requests the homepage and generates desktop and mobile visual QA captures.
 
 ## Environment variables
 
