@@ -14,7 +14,7 @@
   --atlas-blue: #3b82f6;
   --atlas-cyan: #38bdf8;
   --atlas-magenta: #ec4899;
-  --atlas-container: 1180px;
+  --atlas-container: 1280px;
 }
 
 * {
@@ -30,6 +30,7 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--atlas-text);
+  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
   background:
     radial-gradient(circle at 75% 5%, rgba(37, 99, 235, 0.06), transparent 25%),
     var(--atlas-background);
@@ -54,7 +55,7 @@ a {
 }
 
 .atlas-container {
-  width: min(calc(100% - 2rem), var(--atlas-container));
+  width: min(calc(100% - clamp(2.5rem, 10.4vw, 9.5rem)), var(--atlas-container));
   margin-inline: auto;
 }
 
@@ -171,7 +172,7 @@ a {
 
 @media (max-width: 640px) {
   .atlas-container {
-    width: min(calc(100% - 1.25rem), var(--atlas-container));
+    width: calc(100% - 2.5rem);
   }
 
   .atlas-primary-button,
