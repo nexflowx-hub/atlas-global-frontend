@@ -20,9 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund --loglevel=error
+        run: npm ci --no-audit --no-fund --loglevel=error
 
       - name: Typecheck
         run: npm run typecheck
@@ -87,11 +88,4 @@ jobs:
           path: |
             atlas-desktop.png
             atlas-mobile.png
-          if-no-files-found: error
-
-      - name: Upload generated package lock
-        uses: actions/upload-artifact@v4
-        with:
-          name: npm-package-lock
-          path: package-lock.json
           if-no-files-found: error
