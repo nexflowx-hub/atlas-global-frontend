@@ -98,7 +98,10 @@ export function ContactDialog() {
     );
 
     setSubmitted(true);
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+    window.open(
+      `mailto:${siteConfig.email}?subject=${subject}&body=${body}`,
+      "_self",
+    );
   };
 
   const closeAndReset = (nextOpen: boolean) => {
